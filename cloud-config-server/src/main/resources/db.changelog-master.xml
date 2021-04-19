@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
+	<changeSet id="20210414-1" author="gergelyrozsonits">
+		<createTable tableName="PROPERTIES">
+			<column name="APPLICATION" type="varchar(255)">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="PK_PROPERTIES_TABLE"></constraints>
+			</column>
+			<column name="PROFILE" type="varchar(255)">
+				<constraints nullable="false" primaryKey="true"
+					primaryKeyName="PK_PROPERTIES_TABLE"></constraints>
+			</column>
+			<column name="LABEL" type="varchar(255)">
+				<constraints nullable="true" primaryKey="true"
+					primaryKeyName="PK_PROPERTIES_TABLE"></constraints>
+			</column>
+			<column name="KEY" type="varchar(255)">
+				<constraints nullable="true" primaryKey="true"
+					primaryKeyName="PK_PROPERTIES_TABLE"></constraints>
+			</column>
+			<column name="VALUE" type="varchar(4095)" />
+			<column name="CREATE_BY" type="varchar(255)" />
+			<column name="CREATED_DATE" type="TIMESTAMP" />
+			<column name="LAST_MODIFIED_BY" type="varchar(255)" />
+			<column name="LAST_MODIFIED_DATE" type="TIMESTAMP" />
+		</createTable>
+	</changeSet>
+<!-- 	<changeSet id="20210414-2" author="gergelyrozsonits"> -->
+<!-- 		<insert tableName="PROPERTIES"> -->
+<!-- 			<column name="APPLICATION" value="order" /> -->
+<!-- 			<column name="PROFILE" value="default" /> -->
+<!-- 			<column name="LABEL" value="master" /> -->
+<!-- 			<column name="KEY" value="foo.bar" /> -->
+<!-- 			<column name="VALUE" value="foo" /> -->
+<!-- 		</insert> -->
+<!-- 	</changeSet> -->
+</databaseChangeLog>

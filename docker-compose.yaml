@@ -1,0 +1,27 @@
+version: '3'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181"
+    hostname: zookeeper
+  kafka:
+    image: wurstmeister/kafka
+    command: [start-kafka.sh]
+    ports:
+      - "9092:9092"
+    hostname: kafka
+    environment:
+      # Comma-separated list of listeners, and the host/ip and port to which Kafka binds to on which to listen
+      KAFKA_LISTENERS: EXTERNAL_LISTENER://:9092,INTERNAL_LISTENER://:19092
+      # This is the metadata that’s passed back to clients
+      KAFKA_ADVERTISED_LISTENERS: EXTERNAL_LISTENER://localhost:9092,INTERNAL_LISTENER://kafka:19092
+      # Defines key/value pairs for the security protocol to use, per listener name
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: EXTERNAL_LISTENER:PLAINTEXT,INTERNAL_LISTENER:PLAINTEXT
+      # This is the preferred listeners for internal broker communication
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL_LISTENER
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    depends_on:
+      - "zookeeper"
